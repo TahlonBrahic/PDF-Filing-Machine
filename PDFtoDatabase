@@ -1,0 +1,11 @@
+import PyPDF2 as pdf
+
+# Need to create a sample file
+file = open('sample.pdf',"rb")
+reader = pdf.PdfFileReader(file)
+
+num_pages = reader.numPages 
+page1 = reader.getPage(0)
+
+a = print(page1.extractText())
+print(a)
