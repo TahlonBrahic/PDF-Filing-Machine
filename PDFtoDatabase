@@ -1,11 +1,24 @@
 import PyPDF2 as pdf
+import os
+
 
 # Need to create a sample file
-file = open('sample.pdf',"rb")
+file = open('X:\Files\Programming\Projects\sample.pdf',"rb")
 reader = pdf.PdfFileReader(file)
 
-num_pages = reader.numPages 
+
 page1 = reader.getPage(0)
 
 a = print(page1.extractText())
 print(a)
+
+# Loop through each page and assign it a variable name
+num_pages = reader.numPages 
+for num in num_pages:
+    page = reader.getPage(num) # need to make some sort of class or object for this...
+
+# Directory Creation
+chosen_directory = input("Enter location to save the directory:")
+# parent_dir = 'chosen_directory' # need to make this accept user input
+# os.makedirs(parent_dir)
+print("New directory created!")
