@@ -1,3 +1,4 @@
+
 import PyPDF2 as pdf
 import os
 
@@ -11,6 +12,39 @@ page1 = reader.getPage(0)
 
 a = print(page1.extractText())
 print(a)
+
+# Create the objects for this program / PdfFileReader Class
+class Document:
+    def __init__(self, pages, type):
+        self.pages = pages
+        self.type = type
+    
+    def setPages(self, pages):
+        self.pages = pages
+
+    def setType(self, type):
+        self.type = type
+
+    def getPages(self):
+        return self.pages
+
+    def getType(self):
+        return self.type  
+
+class InstrumentCheckout(Document):
+    
+    def isInstrumentCheckout(self):
+        return True
+
+class Juries(Document):
+
+    def isJuries(self):
+        return True
+
+class Miscellanious(Document):
+
+    def isMiscellanious(self):
+        return True
 
 # Loop through each page and assign it a variable name
 num_pages = reader.numPages 
