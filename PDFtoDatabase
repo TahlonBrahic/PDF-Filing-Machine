@@ -1,12 +1,19 @@
-
+# Imports!
 import PyPDF2
 import os
+import re
+import pandas as pd
+import requests
 
 
 # Need to create a sample file
 file = open('X:\Files\Programming\Projects\sample.pdf',"rb")
 reader = PyPDF2.PdfFileReader(file)
 
+# RegExp for retrieving data
+nameRegExp = "name"
+studentIdRegExp = "student Id" # need to optimize
+dateRegExp = "date"
 
 page1 = reader.getPage(0)
 
@@ -95,3 +102,4 @@ chosen_directory = input("Enter location to save the directory:")
 # parent_dir = 'chosen_directory' # need to make this accept user input
 # os.makedirs(parent_dir)
 print("New directory created!")
+
