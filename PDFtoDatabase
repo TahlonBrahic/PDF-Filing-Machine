@@ -1,96 +1,16 @@
-# Imports!
-import PyPDF2
+import PyPDF2 as pdf
 import os
-import re
-import pandas as pd
-import requests
 
 
 # Need to create a sample file
 file = open('X:\Files\Programming\Projects\sample.pdf',"rb")
-reader = PyPDF2.PdfFileReader(file)
+reader = pdf.PdfFileReader(file)
 
-# RegExp for retrieving data
-nameRegExp = "name"
-studentIdRegExp = "student Id" # need to optimize
-dateRegExp = "date"
 
 page1 = reader.getPage(0)
 
 a = print(page1.extractText())
 print(a)
-
-# Code for importing landscape pages
-def rotate_pages(pdf_path):
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(pdf_path)
-    # Rotate page 90 degrees to the right
-    page_1 = pdf_reader.getPage(0).rotateClockwise(90)
-    pdf_writer.addPage(page_1)
-    # Rotate page 90 degrees to the left
-    page_2 = pdf_reader.getPage(1).rotateCounterClockwise(90)
-    pdf_writer.addPage(page_2)
-    # Add a page in normal orientation
-    pdf_writer.addPage(pdf_reader.getPage(2))
-
-    with open('rotate_pages.pdf', 'wb') as fh:
-        pdf_writer.write(fh)
-
-if __name__ == '__main__':
-    path = 'sample.pdf'
-    rotate_pages(path)
-
-# Merge PDF's
-def merge_pdfs(paths, output):
-    pdf_writer = PdfFileWriter()
-
-    for path in paths:
-        pdf_reader = PdfFileReader(path)
-        for page in range(pdf_reader.getNumPages()):
-            # Add each page to the writer object
-            pdf_writer.addPage(pdf_reader.getPage(page))
-
-    # Write out the merged PDF
-    with open(output, 'wb') as out:
-        pdf_writer.write(out)
-
-if __name__ == '__main__':
-    paths = ['document1.pdf', 'document2.pdf']
-    merge_pdfs(paths, output='merged.pdf')
-
-
-# Create the objects for this program / PdfFileReader Class
-class Document:
-    def __init__(self, pages, type):
-        self.pages = pages
-        self.type = type
-    
-    def setPages(self, pages):
-        self.pages = pages
-
-    def setType(self, type):
-        self.type = type
-
-    def getPages(self):
-        return self.pages
-
-    def getType(self):
-        return self.type  
-
-class InstrumentCheckout(Document):
-    
-    def isInstrumentCheckout(self):
-        return True
-
-class Juries(Document):
-
-    def isJuries(self):
-        return True
-
-class Miscellanious(Document):
-
-    def isMiscellanious(self):
-        return True
 
 # Loop through each page and assign it a variable name
 num_pages = reader.numPages 
@@ -102,4 +22,3 @@ chosen_directory = input("Enter location to save the directory:")
 # parent_dir = 'chosen_directory' # need to make this accept user input
 # os.makedirs(parent_dir)
 print("New directory created!")
-
