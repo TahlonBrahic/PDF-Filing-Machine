@@ -24,6 +24,10 @@ def find_name(file):
     name = re.search(nameRegExp, file)
     return name.string
 
+# Program Loop
+startup()
+
+
 # Code for importing landscape pages
 # def rotate_pages(pdf_path):
 #     pdf_writer = PyPDF2.PdfFileWriter
