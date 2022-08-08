@@ -2,21 +2,21 @@
 from csv import reader
 from email.policy import strict
 import PyPDF2
-import os
+
 import re
 import pandas as pd
-import requests
 
 # Welcome
 def startup():
     print('Welcome to the PDF Filing Machine, please type in the address to the file you would like to be sorted.')
-    file_location = input("Enter file address:")
-    file = open(file_location, "rb")
-    reader = PyPDF2.PdfFileReader(file, strict=False)
+    username = input("Enter username:")
+    return username
+
+def reader(file_to_read):
+    reader = PyPDF2.PdfFileReader(file_to_read, strict=False)
     page1 = reader.getPage(0)
     a = print(page1.extractText())
     print(a)
-
 
 # Find Name function
 def find_name(file):
@@ -25,7 +25,7 @@ def find_name(file):
     return name.string
 
 # Program Loop
-startup()
+reader(startup())
 
 
 # Code for importing landscape pages
@@ -110,3 +110,11 @@ startup()
 # parent_dir = 'chosen_directory' # need to make this accept user input
 # os.makedirs(parent_dir)
 #print("New directory created!")
+
+
+
+
+
+
+
+
