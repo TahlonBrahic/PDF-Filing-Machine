@@ -7,13 +7,15 @@ import re
 import pandas as pd
 import requests
 
-
-
-file = open('X:\Files\Programming\Projects\PDFtoDatabaseProject\PDFtoDatabase', "rb")
-reader = PyPDF2.PdfFileReader(file, strict=False)
-page1 = reader.getPage(0)
-a = print(page1.extractText())
-print(a)
+# Welcome
+def startup():
+    print('Welcome to the PDF Filing Machine, please type in the address to the file you would like to be sorted.')
+    file_location = input("Enter file address:")
+    file = open(file_location, "rb")
+    reader = PyPDF2.PdfFileReader(file, strict=False)
+    page1 = reader.getPage(0)
+    a = print(page1.extractText())
+    print(a)
 
 
 # Find Name function
@@ -21,9 +23,6 @@ def find_name(file):
     nameRegExp = 'name'
     name = re.search(nameRegExp, file)
     return name.string
-
-print(find_name(sampleText))
-
 
 # Code for importing landscape pages
 # def rotate_pages(pdf_path):
