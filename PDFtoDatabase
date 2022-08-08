@@ -2,7 +2,7 @@
 from csv import reader
 from email.policy import strict
 import PyPDF2
-
+import os
 import re
 import pandas as pd
 
@@ -13,6 +13,7 @@ def startup():
     return username
 
 def reader(file_to_read):
+    assert os.path.isfile(file_to_read), "Please enter a valid file address."
     reader = PyPDF2.PdfFileReader(file_to_read, strict=False)
     page1 = reader.getPage(0)
     a = print(page1.extractText())
