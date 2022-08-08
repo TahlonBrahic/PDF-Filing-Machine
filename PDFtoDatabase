@@ -1,10 +1,11 @@
 # Imports
-from csv import reader
-from email.policy import strict
+# X:\Files\Programming\Projects\PDFtoDatabaseProject\sample.pdf
 import PyPDF2
 import os
 import re
-import pandas as pd
+import pytesseract as pyt
+from PIL import Image
+import pdf2image
 
 # Welcome
 def startup():
@@ -13,11 +14,10 @@ def startup():
     return username
 
 def reader(file_to_read):
-    assert os.path.isfile(file_to_read), "Please enter a valid file address."
-    reader = PyPDF2.PdfFileReader(file_to_read, strict=False)
-    page1 = reader.getPage(0)
-    a = print(page1.extractText())
-    print(a)
+    pyt.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
+    image = pdf2image.convert_from_path(file_to_read, 200, poppler_path='X:/Downloads/poppler-0.68.0_x86/poppler-0.68.0/bin')
+    text = pyt.image_to_string('X:\Files\Programming\Projects\PDFtoDatabaseProject\sample.pdf')
+    print(text)
 
 # Find Name function
 def find_name(file):
@@ -26,7 +26,7 @@ def find_name(file):
     return name.string
 
 # Program Loop
-reader(startup())
+reader('X:\Files\Programming\Projects\PDFtoDatabaseProject\sample.pdf')
 
 
 # Code for importing landscape pages
