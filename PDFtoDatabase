@@ -12,31 +12,21 @@ import requests
 #file = open('X:\Files\Programming\Projects\PDFtoDatabaseProject\PDFtoDatabase', "rb")
 #reader = PyPDF2.PdfFileReader(file, strict=False)
 
-# RegExp for retrieving data
-nameRegExp = "name"
-studentIdRegExp = "student ID" # need to optimize
-dateRegExp = "date"
 
 #page1 = reader.getPage(0)
 
 #a = print(page1.extractText())
 #print(a)
 
-# Temporary text for program because there isn't a good sample pdf...
-sampleText = """ 
-    hello this is sample text and here we include filler text so that
-    the program has to look through idtems and find where the keywords
-    are in the name: John Smith in this document and has to not choose
-    words that could student ID: 54394320 and has to look for other things
-    but not at this time
-"""
 
-# Find Username function
+# Find Name function
 def find_name(file):
-    username = re.search(nameRegExp, file)
-    return username
+    nameRegExp = 'name'
+    name = re.search(nameRegExp, file)
+    return name.string
 
 print(find_name(sampleText))
+
 
 # Code for importing landscape pages
 # def rotate_pages(pdf_path):
@@ -120,8 +110,6 @@ print(find_name(sampleText))
 # parent_dir = 'chosen_directory' # need to make this accept user input
 # os.makedirs(parent_dir)
 #print("New directory created!")
-
-
 
 
 
