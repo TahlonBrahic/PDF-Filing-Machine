@@ -1,4 +1,4 @@
-# Imports!
+# Imports
 from csv import reader
 from email.policy import strict
 import PyPDF2
@@ -8,15 +8,12 @@ import pandas as pd
 import requests
 
 
-# Need to create a sample file
-#file = open('X:\Files\Programming\Projects\PDFtoDatabaseProject\PDFtoDatabase', "rb")
-#reader = PyPDF2.PdfFileReader(file, strict=False)
 
-
-#page1 = reader.getPage(0)
-
-#a = print(page1.extractText())
-#print(a)
+file = open('X:\Files\Programming\Projects\PDFtoDatabaseProject\PDFtoDatabase', "rb")
+reader = PyPDF2.PdfFileReader(file, strict=False)
+page1 = reader.getPage(0)
+a = print(page1.extractText())
+print(a)
 
 
 # Find Name function
@@ -110,6 +107,3 @@ print(find_name(sampleText))
 # parent_dir = 'chosen_directory' # need to make this accept user input
 # os.makedirs(parent_dir)
 #print("New directory created!")
-
-
-
